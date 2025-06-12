@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prompt Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+    input, textarea { width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
+    button { padding: 0.6rem 1.2rem; font-size: 1rem; }
+    #output { background: #f5f5f5; padding: 1rem; white-space: pre-wrap; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+  <h2>🎨 Prompt 自動產生器</h2>
+
+  <label>前景關鍵字：</label>
+  <input type="text" id="foreground" placeholder="e.g. floating tea pot">
+
+  <label>主圖風格（或主視覺描述）：</label>
+  <input type="text" id="mainstyle" placeholder="e.g. cyberpunk anime style">
+
+  <label>背景關鍵字：</label>
+  <input type="text" id="background" placeholder="e.g. neon jungle at night">
+
+  <button onclick="generatePrompt()">產生 Prompt</button>
+
+  <h3>✅ 結果：</h3>
+  <div id="output"></div>
+  <button onclick="copyPrompt()">📋 複製 Prompt</button>
+
+  <script>
+    function generatePrompt() {
+      const fg = document.getElementById('foreground').value;
+      const main = document.getElementById('mainstyle').value;
+      const bg = document.getElementById('background').value;
+
+      const prompt = `A highly detailed illustration of ${fg}, designed in the style of ${main}, set against a background of ${bg}. Soft lighting, depth of field, cinematic atmosphere, 4K resolution.`;
+
+      document.getElementById('output').innerText = prompt;
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('output').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('已複製！');
+      });
+    }
+  </script>
+
+</body>
+</html>
